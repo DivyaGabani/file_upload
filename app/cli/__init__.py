@@ -16,4 +16,3 @@ def create_database():
     if not os.path.exists(dbdir):
         os.mkdir(dbdir)
     db.create_all()
-
