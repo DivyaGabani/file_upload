@@ -5,8 +5,7 @@ from logging.config import dictConfig
 import flask
 from flask import request, current_app
 
-# from app.logging_config.log_formatters import RequestFormatter
-#from app import config
+
 from app import config
 
 log_con = flask.Blueprint('log_con', __name__)
@@ -48,6 +47,15 @@ LOGGING_CONFIG = {
     'formatters': {
         'standard': {
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+        },
+        'RequestFormatter': {
+            '()': 'app.logging_config.log_formatters.RequestFormatter',
+            'format': '[%(asctime)s] [%(process)d] %(remote_addr)s requested %(url)s'
+                      '%(levelname)s in %(module)s: %(message)s'
+        },
+        'CSVFormatter': {
+            '()': 'app.logging_config.log_formatters.RequestFormatter',
+            'format': '%(filename)s uploaded by : %(host)s'
         }
     },
     'handlers': {
