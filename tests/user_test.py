@@ -11,31 +11,31 @@ def test_adding_user(application):
         assert db.session.query(Song).count() == 0
         #showing how to add a record
         #create a record
-        user = User('keith@webizly.com', 'testtest')
+        user = User('drg5@njit.edu', 'testtest')
         #add it to get ready to be committed
         db.session.add(user)
         #call the commit
         #db.session.commit()
         #assert that we now have a new user
-        #assert db.session.query(User).count() == 1
+        assert db.session.query(User).count() == 1
         #finding one user record by email
-        user = User.query.filter_by(email='keith@webizly.com').first()
+        user = User.query.filter_by(email='drg5@njit.edu').first()
         log.info(user)
         #asserting that the user retrieved is correct
-        assert user.email == 'keith@webizly.com'
+        assert user.email == 'drg5@njit.edu'
         #this is how you get a related record ready for insert
-        user.songs= [Song("test","smap"),Song("test2","te")]
+        #user.songs= [Song("test","smap"),Song("test2","te"),Song("test3","tes")]
         #commit is what saves the songs
-        db.session.commit()
-        assert db.session.query(Song).count() == 2
-        song1 = Song.query.filter_by(title='test').first()
-        assert song1.title == "test"
+        #db.session.commit()
+        #assert db.session.query(Song).count() == 2
+        #song1 = Song.query.filter_by(title='test').first()
+        #assert song1.title == "test"
         #changing the title of the song
-        song1.title = "SuperSongTitle"
+        #song1.title = "SuperSongTitle"
         #saving the new title of the song
-        db.session.commit()
-        song2 = Song.query.filter_by(title='SuperSongTitle').first()
-        assert song2.title == "SuperSongTitle"
+        #db.session.commit()
+        #song2 = Song.query.filter_by(title='SuperSongTitle').first()
+        #assert song2.title == "SuperSongTitle"
         #checking cascade delete
         db.session.delete(user)
         assert db.session.query(User).count() == 0

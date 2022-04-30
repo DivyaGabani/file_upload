@@ -5,15 +5,10 @@ from logging.config import dictConfig
 import flask
 from flask import request, current_app
 
-#from app.logging_config.log_formatters import RequestFormatter
+# from app.logging_config.log_formatters import RequestFormatter
 from app import config
 
 log_con = flask.Blueprint('log_con', __name__)
-
-
-#@log_con.before_app_request
-#def before_request_logging():
-
 
 
 @log_con.after_app_request
@@ -24,18 +19,26 @@ def after_request_logging(response):
         return response
     elif request.path.startswith('/bootstrap'):
         return response
+    logging.config.dictConfig(LOGGING_CONFIG)
+    log = logging.getLogger("myApp")
+    log.info("My App Logger")
+    log = logging.getLogger("csvlog")
+    log.debug("CSV file upload Logger Message(first_request)")
     return response
 
-@log_con.before_app_first_request
-def setup_logs():
 
+@log_con.before_app_first_request
+def configure_logging():
     # set the name of the apps log folder to logs
     logdir = config.Config.LOG_DIR
     # make a directory if it doesn't exist
     if not os.path.exists(logdir):
         os.mkdir(logdir)
     logging.config.dictConfig(LOGGING_CONFIG)
-
+    log = logging.getLogger("myApp")
+    log.info("My App Logger")
+    log = logging.getLogger("csvlog")
+    log.debug("CSV file upload Logger Message(first_request)")
 
 
 LOGGING_CONFIG = {
@@ -45,7 +48,15 @@ LOGGING_CONFIG = {
         'standard': {
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
         },
-
+        'RequestFormatter': {
+            '()': 'app.logging_config.log_formatters.RequestFormatter',
+            'format': '[%(asctime)s] [%(process)d] %(remote_addr)s requested %(url)s'
+                      '%(levelname)s in %(module)s: %(message)s'
+        },
+        'CSVFormatter': {
+            '()': 'app.logging_config.log_formatters.RequestFormatter',
+            'format': '%(filename)s uploaded by : %(host)s'
+        }
     },
     'handlers': {
         'default': {
@@ -54,77 +65,39 @@ LOGGING_CONFIG = {
             'class': 'logging.StreamHandler',
             'stream': 'ext://sys.stdout',  # Default is stderr
         },
-        'file.handler': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'standard',
-            'filename': os.path.join(config.Config.LOG_DIR,'handler.log'),
-            'maxBytes': 10000000,
-            'backupCount': 5,
-        },
         'file.handler.myapp': {
             'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'standard',
-            'filename': os.path.join(config.Config.LOG_DIR,'myapp.log'),
+            'formatter': 'RequestFormatter',
+            'filename': os.path.join(config.Config.LOG_DIR, 'myapp.log'),
             'maxBytes': 10000000,
             'backupCount': 5,
         },
-        'file.handler.request': {
+        'file.handler.csvlog': {
             'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'standard',
-            'filename': os.path.join(config.Config.LOG_DIR,'request.log'),
-            'maxBytes': 10000000,
-            'backupCount': 5,
-        },
-        'file.handler.errors': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'standard',
-            'filename': os.path.join(config.Config.LOG_DIR,'errors.log'),
-            'maxBytes': 10000000,
-            'backupCount': 5,
-        },
-        'file.handler.sqlalchemy': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'standard',
-            'filename': os.path.join(config.Config.LOG_DIR,'sqlalchemy.log'),
-            'maxBytes': 10000000,
-            'backupCount': 5,
-        },
-        'file.handler.werkzeug': {
-            'class': 'logging.handlers.RotatingFileHandler',
-            'formatter': 'standard',
-            'filename': os.path.join(config.Config.LOG_DIR,'werkzeug.log'),
+            'formatter': 'CSVFormatter',
+            'filename': os.path.join(config.Config.LOG_DIR, 'csvlog.log'),
             'maxBytes': 10000000,
             'backupCount': 5,
         },
     },
     'loggers': {
         '': {  # root logger
-            'handlers': ['default','file.handler'],
+            'handlers': ['default'],
             'level': 'DEBUG',
             'propagate': True
         },
         '__main__': {  # if __name__ == '__main__'
-            'handlers': ['default','file.handler'],
+            'handlers': ['default'],
             'level': 'DEBUG',
             'propagate': True
         },
-        'werkzeug': {  # if __name__ == '__main__'
-            'handlers': ['file.handler.werkzeug'],
-            'level': 'DEBUG',
-            'propagate': False
-        },
-        'sqlalchemy.engine': {  # if __name__ == '__main__'
-            'handlers': ['file.handler.sqlalchemy'],
+        'myApp': {  # if __name__ == '__main__'
+            'handlers': ['file.handler.myapp'],
             'level': 'INFO',
             'propagate': False
         },
-        'myApp': {  # if __name__ == '__main__'
-            'handlers': ['file.handler.myapp'],
-            'level': 'DEBUG',
-            'propagate': False
-        },
-        'myerrors': {  # if __name__ == '__main__'
-            'handlers': ['file.handler.errors'],
+        'csvlog': {  # if __name__ == '__main__'
+            'handlers': ['file.handler.csvlog'],
             'level': 'DEBUG',
             'propagate': False
         },

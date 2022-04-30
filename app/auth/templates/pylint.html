@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+        <!-- Begin page content -->
+            <div class="row">
+                <h3>Pylint Page</h3>
+                <div class="col-6">
+                    <h3 class="mt-5">Why Pylint? </h3>
+                    <p style="font-size: 20px;">Pylint is a tool that checks for errors in Python code, tries to enforce
+                        a coding standard and looks for code smells. It can also look for certain type errors, it can
+                        recommend suggestions about how particular blocks can be refactored and can offer you details
+                        about the code's complexity.</p>
+                    <p style="font-size: 20px;">It’s highly configurable, having special pragmas to control its errors
+                        and warnings from within your code, as well as from an extensive configuration file. It is also
+                        possible to write your own plugins for adding your own checks or for extending pylint in one way
+                        or another.</p>
+                    <h3 class="mt-5">Install </h3>
+                    <p style="font-size: 20px;">Pylint can be simply installed by running</p>
+                    <p style="font-size: 20px; background-color: black; color: white;">pip install pylint</p>
+                    <h3 class="mt-5">Upgrading Pylint</h3>
+                    <p style="font-size: 20px;"></p>
+                    <p style="font-size: 20px; background-color: black; color: white;">pylint --version</p>
+                    <p style="font-size: 20px;">To upgrade to the absolute latest version</p>
+                    <p style="font-size: 20px; background-color: black; color: white;">pip install pylint --upgrade</p>
+                    <p style="font-size: 20px;">If you want to install a specific version, run the following command
+                        with the version you wish to install. </p>
+                    <p style="font-size: 20px; background-color: black; color: white;">pip install --force-reinstall
+                        pylint==2.7.1</p>
+
+                    <p style="font-size: 20px;"><br>Pylint checks for many things. Some of them may be more important
+                        than
+                        others for your application. You can create a file that allows you to tell Pylint to ignore
+                        certain checks. This file is called .pylintrc.</p>
+
+                    <h3 class="mt-5">Run </h3>
+                    <p style="font-size: 20px;">Once we have installed pylint, we can easily use it by running the
+                        command pylint with the name of the file as follows:</p>
+                    <p style="font-size: 20px; background-color: black; color: white;">pylint filename.py</p>
+                </div>
+                <div class="col">
+                    <h3 class="mt-5">Pylint</h3>
+                    <img src="{{ url_for('static', filename='/images/pylint.png') }}"
+                         class="d-block" style="height: 380px; width: 575px;"/>
+                </div>
+            </div>
+
+
+    {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}

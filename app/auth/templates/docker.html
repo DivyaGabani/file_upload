@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+<h3>Docker Page</h3>
+    <div class="row">
+        <!-- Begin page content -->
+        <div class="container-fluid" style="margin-top: 70px;">
+            <div class="row">
+                <h4> Let's take a closer look to Docker</h4>
+                <div class="col-6">
+                    <h3 class="mt-5">Why Docker is so important? </h3>
+                    <p style="font-size: 22px;">The Docker goal is to ease the creation, deploy and the delivery of an
+                        application using the so called Containers. The Docker Containers allow the developer/sysadmin
+                        to bundle an application with all needed components (libraries and other resources) and to
+                        deliver it as an independent and single package.</p>
+                    <h3 class="mt-5">What is Container? </h3>
+                    <p style="font-size: 22px;">A container is a standard unit of software that packages up code and all
+                        its dependencies so the application runs quickly and reliably from one computing environment to
+                        another.</p>
+                    <h3 class="mt-5">Why use Container? </h3>
+                    <p style="font-size: 22px;">ontainers offer a logical packaging mechanism in which applications can
+                        be abstracted from the environment in which they actually run. This decoupling allows
+                        container-based applications to be deployed easily and consistently, regardless of whether the
+                        target environment is a private data center, the public cloud, or even a developer’s personal
+                        laptop. </p>
+                    <h3 class="mt-5">What is Container Image? </h3>
+                    <p style="font-size: 22px;">A Docker container image is a lightweight, standalone, executable
+                        package of software that includes everything needed to run an application: code, runtime, system
+                        tools, system libraries and settings.</p>
+                    <h3 class="mt-5">Docker Files</h3>
+                    <p style="font-size: 22px;">Docker File -Defines the contents and startup behavior of a single
+                        container.</p>
+                    <p style="font-size: 22px;">Compose File -Defines a multi-container application.</p>
+                </div>
+                <div class="col">
+                    <h3 class="mt-5">Docker Architecture </h3>
+                    <img src="{{ url_for('static', filename='/images/Docker_Architecture.png') }}"
+                         class="d-block" style="height: 380px; width: 575px;"/>
+                    <h3 class="mt-5">Container </h3>
+                    <img src="{{ url_for('static', filename='/images/container-what-is-container.png') }}"
+                         class="d-block" style="height: 380px;width: 575px;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}

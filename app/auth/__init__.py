@@ -170,6 +170,50 @@ def delete_user(user_id):
     flash('User Deleted', 'success')
     return redirect(url_for('auth.browse_users'), 302)
 
+@auth.route('/aaa')
+@login_required
+def aaa():
+    return render_template('aaa.html')
+
+@auth.route('/solid')
+@login_required
+def solid():
+    return render_template('solid.html')
+
+@auth.route('/python')
+@login_required
+def python():
+    return render_template('python.html')
+
+@auth.route('/pylint')
+@login_required
+def pylint():
+    return render_template('pylint.html')
+
+@auth.route('/html1')
+@login_required
+def html1():
+    return render_template('html1.html')
+
+@auth.route('/oop')
+@login_required
+def oop():
+    return render_template('oop.html')
+
+@auth.route('/git')
+@login_required
+def git():
+    return render_template('git.html')
+
+@auth.route('/docker')
+@login_required
+def docker():
+    return render_template('docker.html')
+
+
+
+
+
 
 
 

@@ -1,0 +1,202 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+    <h3>OOP Page</h3>
+        <!-- Begin page content -->
+        <div class="container-fluid">
+            <h3 class="mt-5" style="text-align: center">Object Oriented Programming (OOP)</h3>
+            <p style="font-size: 20px; text-align: center;">Object-Oriented Programming(OOP), is all about creating
+                “objects”. An object is
+                a group of interrelated variables and functions. These variables are often referred to as properties of
+                the object and functions are referred to as the behavior of the objects. These objects provide a better
+                and clear structure for the program. Object-Oriented programming is famous because it implements the
+                real-world
+                entities like objects, hiding, inheritance, etc in programming. It makes visualization easier because it
+                is close to real-world scenarios.</p>
+            <p>
+                <img src="{{ url_for('static', filename='/images/java-oops.png') }}"
+                     class="d-block" style="height: 380px; width: 575px; margin-left: auto;
+  margin-right: auto;"/></p>
+            <h3 class="mt-5" style="text-align: center">Some Fundamental Concepts of OOP</h3>
+            <div class="row">
+                <div class="col-7">
+                    <h3 class="mt-5">1.Object</h3>
+                    <p style="font-size: 20px;">A class is a blueprint for the object.
+                        We can think of class as a sketch of a parrot with labels. It contains all the details about the
+                        name, colors, size etc. Based on these descriptions, we can study about the parrot. Here, a
+                        parrot is an object.</p>
+                    <p style="font-size: 20px;">The example for class of Human can be :</p>
+                    <p style="font-size: 20px; background-color: black; color: white;">class Human:<br>
+                        pass</p>
+                    <p style="font-size: 20px;">Here, we use the class keyword to define an empty class Parrot. From
+                        class, we construct instances. An instance is a specific object created from a particular
+                        class.</p>
+
+                    <h3 class="mt-5">2.Class</h3>
+                    <p style="font-size: 20px;">An object (instance) is an instantiation of a class. When class is
+                        defined, only the description for the object is defined. Therefore, no memory or storage is
+                        allocated.</p>
+                    <p style="font-size: 20px;">The example for object of Human class can be:</p>
+                    <p style="font-size: 20px; background-color: black; color: white;">obj = Human();</p>
+                    <p style="font-size: 20px;">Here, obj is an object of class Parrot.</p>
+
+                    <h3 class="mt-5">3.Namespace</h3>
+                    <p style="font-size: 20px;">A namespace is a collection of currently defined symbolic names along
+                        with information about the object that each name references. You can think of a namespace as a
+                        dictionary in which the keys are the object names and the values are the objects themselves.
+                        Each key-value pair maps a name to its corresponding object.</p>
+                    <p style="font-size: 20px;">In a Python program, there are four types of namespaces:<br>
+                        1.Built-In<br>
+                        2.Global<br>
+                        3.Enclosing<br>
+                        4.Local</p>
+
+                    <h3 class="mt-5">4.Constructor</h3>
+                    <p style="font-size: 20px;">Each time an object is created a method is called. That methods is named
+                        the constructor.
+                        The constructor is created with the function init. As parameter we write the self keyword, which
+                        refers to itself (the object).</p>
+                    <p style="font-size: 20px;">Inside the constructor we initialize two variables: legs and arms.
+                        Sometimes variables are named properties in the context of object oriented programming. We
+                        create one object (divya) and just by creating it, its variables are initialized.</p>
+                    <pre class="code" style="font-size: 20px; background-color: black; color: white;">class Human:
+ def __init__(self):
+   self.legs = 2
+   self.arms = 2
+
+divya = Human()
+print(divya.legs)</pre>
+
+
+                    <h3 class="mt-5">5.Typecast</h3>
+                    <p style="font-size: 20px;">Type Casting is the method to convert the variable data type into a
+                        certain data type in order to the operation required to be performed by users. In this article,
+                        we will see the various technique for typecasting.<br>
+                        There can be two types of Type Casting in Python<br></p>
+                    <h5>- Implicit Type Casting : </h5>
+                    <p style="font-size: 20px;">In this, methods, Python converts data type into another data type
+                        automatically. In this process, users don’t have to involve in this process.<br>
+
+                    <pre class="code" style="font-size: 20px; background-color: black; color: white;"># a to int
+a = 7
+print(type(a))</pre>
+
+                    <h5>- Explicit Type Casting : </h5>
+                    <p style="font-size: 20px;">In this method, Python need user involvement to convert the variable
+                        data type into certain data type in order to the operation required.<br>
+                        Mainly in type casting can be done with these data type function: int(), float(), str()<br>
+
+                    <pre class="code" style="font-size: 20px; background-color: black; color: white;"># int variable
+a = 5
+# typecast to float
+n = float(a)
+# print
+print(n)
+# output
+5.0</pre>
+
+                    <h3 class="mt-5">6.Methods</h3>
+                    <p style="font-size: 20px;">In Object-Oriented Programming, we have objects.
+                        These objects consist of properties and behavior. Furthermore, properties of the object are
+                        defined by the attributes and the behavior is defined using methods. These methods are defined
+                        inside a class. These methods are the reusable piece of code that can be called at any
+                        point in the program.</p>
+                    <h5>- Instance Method : </h5>
+                    <p style="font-size: 20px;">In this, methods, Python converts data type into another data type
+                        automatically. In this process, users don’t have to involve in this process.
+                    <pre style="font-size: 20px; background-color: black; color: white;">class My_class:
+  def instance_method(self):
+    return "This is an instance method."</pre>
+                    <h5>- Static Method : </h5>
+                    <p style="font-size: 20px;">In order to define a static method, we can use the @staticmethod
+                        decorator. Unlike instance methods and class methods, we do not need to pass any special or
+                        default parameters. Let’s look at the implementation: <br>
+                    <pre style="font-size: 20px; background-color: black; color: white;">class My_class:
+
+  @staticmethod
+  def static_method():
+    return "This is a static method."</pre>
+
+                    <h3 class="mt-5">7.Polymorphism</h3>
+                    <p style="font-size: 20px;">This is a Greek word. If we break the term Polymorphism, we get
+                        “poly”-many and “morph”-forms. So Polymorphism means having many forms. In OOP it refers to the
+                        functions having the same names but carrying different functionalities.</p>
+                    <pre style="font-size: 20px; background-color: black; color: white;">class BMW:
+ def description(self):
+   print("This the description function of class BMW.")
+bmw = BMW()
+for car in (bmw):
+ car.description()</pre>
+                    <h3 class="mt-5">8.Encapsulation</h3>
+                    <p style="font-size: 20px;">Encapsulation is a way to ensure security. Basically, it hides the data
+                        from the access of outsiders. Such as if an organization wants to protect an object/information
+                        from unwanted access by clients or any unauthorized person then encapsulation is the way to
+                        ensure this.</p>
+                    <pre style="font-size: 20px; background-color: black; color: white;">class car:
+ def __init__(self, name, mileage):
+     self.name = name
+     self.mileage = mileage
+
+ def description(self):
+     return f"The {self.name} car gives the mileage of {self.mileage}km/l"</pre>
+                    <pre style="font-size: 20px; background-color: black; color: white;">obj = car("BMW 7-series",39.53)
+#accessing protected variable via class method
+print(obj.description())
+
+#accessing protected variable directly from outside
+print(obj.name)
+print(obj.mileage)</pre>
+                </div>
+                <div class="col">
+
+                    <h3 class="mt-5">Objects</h3>
+                    <img src="{{ url_for('static', filename='/images/objects.jpg') }}"
+                         class="d-block" style="height: 410px; width: 450px;"/>
+
+                    <h3 class="mt-5">Class </h3>
+                    <img src="{{ url_for('static', filename='/images/class.png') }}"
+                         class="d-block" style="height: 410px;width: 450px;"/>
+
+                    <h3 class="mt-5">Constructor </h3>
+                    <img src="{{ url_for('static', filename='/images/cons.png') }}"
+                         class="d-block" style="height: 410px;width: 450px;"/>
+
+                    <h3 class="mt-5">Method </h3>
+                    <img src="{{ url_for('static', filename='/images/method.png') }}"
+                         class="d-block" style="height: 410px;width: 450px;"/>
+
+
+                    <h3 class="mt-5">Polymorphism </h3>
+                    <img src="{{ url_for('static', filename='/images/poly.jpeg') }}"
+                         class="d-block" style="height: 410px;width: 450px;"/>
+
+                    <h3 class="mt-5">Encapsulation </h3>
+                    <img src="{{ url_for('static', filename='/images/en.jpeg') }}"
+                         class="d-block" style="height: 410px;width: 450px;"/>
+
+                    <h3 class="mt-5">Abstraction </h3>
+                    <img src="{{ url_for('static', filename='/images/ab.jpg') }}"
+                         class="d-block" style="height: 410px;width: 450px;"/>
+
+                    <h3 class="mt-5">Inheritance </h3>
+                    <img src="{{ url_for('static', filename='/images/in.png') }}"
+                         class="d-block" style="height: 410px;width: 450px;"/>
+                </div>
+            </div>
+        </div>
+
+    {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}

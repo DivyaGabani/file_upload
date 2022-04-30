@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+        <div class="container-fluid" style="margin-top: 70px;">
+            <div class="row">
+                <div class="col-7">
+                    <h4> Let's take a closer look to Github</h4>
+                    <h3 class="mt-5">What is Github? </h3>
+                    <p style="font-size: 22px;">GitHub is a web-based interface that uses Git, the open source version
+                        control software that lets multiple people make separate changes to web pages at the same
+                        time</p>
+                    <h3 class="mt-5">Git Commands and Terminologies </h3>
+                    <p style="font-size: 22px;">
+                    <ul style="font-size: 22px;">
+                        <li style="font-weight: bold;">Repository</li>
+                        <p>A repository encompasses the entire collection of files and folders associated with a
+                            project, along with each file’s revision history. Because Git is a DVCS, repositories are
+                            self-contained units and anyone who owns a copy of the repository can access the entire
+                            codebase and its history. Using the command line or other ease-of-use interfaces, a git
+                            repository also allows for: interaction with the history, cloning, creating branches,
+                            committing, merging, comparing changes across versions of code, and more.</p>
+                        <li style="font-weight: bold;">Clone/Fork</li>
+                        <p>Clone -Git clone creates a local copy of a project that already exists remotely. The clone
+                            includes all the project’s files, history, and branches.</p>
+                        <p>Fork -Creating a “fork” is producing a personal copy of someone else’s project. Forks act as
+                            a sort of bridge between the original repository and your personal copy. You can submit Pull
+                            Requests to help make other people’s projects better by offering your changes up to the
+                            original project. Forking is at the core of social coding at GitHub.</p>
+                        <li style="font-weight: bold;">Branch</li>
+                        <p>Git branches are effectively a pointer to a snapshot of your changes. When you want to add a
+                            new feature or fix a bug—no matter how big or how small—you spawn a new branch to
+                            encapsulate your changes. This makes it harder for unstable code to get merged into the main
+                            code base, and it gives you the chance to clean up your future's history before merging it
+                            into the main branch.</p>
+                        <li style="font-weight: bold;">Commit</li>
+                        <p>Git commit saves the snapshot to the project history and completes the change-tracking
+                            process. In short, a commit functions like taking a photo. Anything that’s been staged with
+                            git add will become a part of the snapshot with git commit. It will save any changes to the
+                            local repository.
+                        </p>
+                        <li style="font-weight: bold;">Merge/Push/Pull</li>
+                        <p>Merge -Git merge will combine multiple sequences of commits into one unified history. In the
+                            most frequent use cases, git merge is used to combine two branches. </p>
+                        <p>Push -The git push command is used to upload local repository content to a remote repository.
+                            After a local repository has been modified a push is executed to share the modifications
+                            with remote team members. Pushing is how you transfer commits from your local repository to
+                            a remote repo.</p>
+                        <p>Pull -The git pull command is actually a combination of two other commands, git fetch
+                            followed by git merge. In the first stage of operation git pull will execute a git fetch
+                            scoped to the local branch that HEAD is pointed at. Once the content is downloaded, git pull
+                            will enter a merge workflow. A new merge commit will be-created and HEAD updated to point at
+                            the new commit.</p>
+                        <li style="font-weight: bold;">Checkout</li>
+                        <p>A git checkout command will allow for the navigation between branches created by git branch.
+                            Checking out a branch updates the files in the working directory to match the version stored
+                            in that branch, and it tells Git to record all new commits on that branch.</p>
+                        <li style="font-weight: bold;">Status</li>
+                        <p>The git status command displays the state of the working directory and the staging area. It
+                            lets you see which changes have been staged, which haven't, and which files aren't being
+                            tracked by Git.</p>
+                    </ul>
+                    </p>
+                </div>
+                <div class="col-5">
+                    <h3 class="mt-5">Git and Github </h3>
+                    <img src="{{ url_for('static', filename='/images/download.png') }}"
+                         class="d-block" style="height: 440px; width: 575px;"/>
+                    <br>
+                    <h3 class="mt-5">Git Workflow</h3>
+                    <img src="{{ url_for('static', filename='/images/GitWorkflow-4.png') }}"
+                         class="d-block" style="height: 440px; width: 575px;"/>
+                    <br>
+                    <h3 class="mt-5">Github Workflow</h3>
+                    <img src="{{ url_for('static', filename='/images/workflow.png') }}"
+                         class="d-block" style="height: 440px; width: 575px;"/>
+                </div>
+            </div>
+        </div>
+
+         {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}

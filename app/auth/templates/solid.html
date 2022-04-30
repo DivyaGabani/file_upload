@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+        <!-- Begin page content -->
+            <div class="row">
+                <h3>Solid Page</h3>
+                <div class="col-6">
+                    <h3 class="mt-5">SOLID Principles</h3>
+                    <p style="font-size: 20px;">In the field of object-oriented programming and software design, SOLID
+                        principles are a set of 5 principles that facilitate code testing, maintenance and readability.
+                        The benefits of a team adopting these principles in their code development include more agile
+                        software deployment, increased code reusability and scalability, and improved debugging. </p>
+                    <p style="font-size: 20px;">These five principles are not a specific ordered list (do this, then
+                        that, etc) but a collection of best practices, developed through the decades. They are gathered
+                        into an acronym, as a mnemonic vehicle to be remembered, similar to others in computer science,
+                        e.g.: DRY: Don’t Repeat Yourself; KISS: Keep It Small and Simple; as pieces of accumulated
+                        wisdom. A little side note, the acronym was created years after these five principles were set
+                        together.
+                    </p>
+                    <h3 class="mt-5">SOLID is a short form. It stands for...</h3>
+                    <p style="font-size: 20px;">1. Single Responsibility Principle<br>
+                        2. Open and Closed Principle<br>
+                        3. Lisvok Sub situation Principle<br>
+                        4. Interface Segregation Principle<br>
+                        5. Dependency Inversion Principle</p>
+                    <h3 class="mt-5">Why do you need to know? </h3>
+                    <p style="font-size: 20px;">1. Easy to understand the codebase<br>
+                        2. Easy to extend<br>
+                        3. Easy to maintain the codebase<br>
+                        4. Robust code<br>
+                        5. Minimum changing existing codebase or not at all.</p>
+                    <h3 class="mt-5">Single Responsibility Principle </h3>
+                    <p style="font-size: 20px;">A class should have only one responsibility and only one reason to
+                        change. That means a class does not perform multiple jobs.In other words, every component of
+                        your code should have one and only one responsibility.</p>
+                    <h3 class="mt-5">Open and Closed Principle</h3>
+                    <p style="font-size: 20px;">The Open/Closed Principle indicates that classes should be open for
+                        extension, but closed for modification. In other words, the code should be written in such a way
+                        that, when adding new functionality, previously written code, which may be in use by other
+                        users, should not be modified.</p>
+                    <h3 class="mt-5">Lisvok Sub situation Principle</h3>
+                    <p style="font-size: 20px;">Liskov’s Principle of Substitution states that classes should be
+                        substitutable by instances of their subclasses.</p>
+                    <h3 class="mt-5">Interface Segregation Principle</h3>
+                    <p style="font-size: 20px;">The Interface Segregation Principle states that clients should not be
+                        forced to rely on methods they do not use and therefore suggests the creation of specific
+                        interfaces or classes for such clients.</p>
+                    <h3 class="mt-5">Dependency Inversion Principle</h3>
+                    <p style="font-size: 20px;">The last principle called Principle of Dependency Inversion can be
+                        separated into two statements. On the one hand, it indicates that abstractions should not depend
+                        on details, since details should depend on abstractions. On the other hand, it indicates that
+                        high-level classes should not depend on low-level classes, since both should depend on
+                        abstractions. In summary, abstractions should depend on abstractions.</p>
+                </div>
+                <div class="col">
+
+                    <h3 class="mt-5">SRP </h3>
+                    <img src="{{ url_for('static', filename='/images/srp.png') }}"
+                         class="d-block" style="height: 300px;width: 575px;"/>
+                    <h3 class="mt-5">OCP </h3>
+                    <img src="{{ url_for('static', filename='/images/opcl.png') }}"
+                         class="d-block" style="height: 300px;width: 575px;"/>
+                    <h3 class="mt-5">LSP </h3>
+                    <img src="{{ url_for('static', filename='/images/liskov.png') }}"
+                         class="d-block" style="height: 300px;width: 575px;"/>
+                    <h3 class="mt-5">ISP </h3>
+                    <img src="{{ url_for('static', filename='/images/isp.png') }}"
+                         class="d-block" style="height: 300px;width: 575px;"/>
+                    <h3 class="mt-5">DIP </h3>
+                    <img src="{{ url_for('static', filename='/images/dip.jpg') }}"
+                         class="d-block" style="height: 300px;width: 575px;"/>
+                </div>
+            </div>
+
+    {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}
