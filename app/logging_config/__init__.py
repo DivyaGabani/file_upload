@@ -48,10 +48,6 @@ LOGGING_CONFIG = {
     'formatters': {
         'standard': {
             'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
-        },
-        'CSVFormatter': {
-            '()': 'app.logging_config.log_formatters.RequestFormatter',
-            'format': '%(filename)s uploaded by : %(host)s'
         }
     },
     'handlers': {
