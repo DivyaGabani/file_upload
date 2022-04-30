@@ -12,6 +12,7 @@ class RequestFormatter(logging.Formatter):
             record.ip = request.headers.get('X-Forwarded-For', request.remote_addr)
             record.host = request.host.split(':', 1)[0]
             record.args = dict(request.args)
+            record.filename = request.files
 
         else:
             record.url = None

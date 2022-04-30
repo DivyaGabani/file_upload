@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+        <!-- Begin page content -->
+            <div class="row">
+                <div class="col-6">
+                    <h4> Let's take a closer look to Python</h4>
+                    <h3 class="mt-5">What is Python? </h3>
+                    <p style="font-size: 22px;">Python is a computer programming language often used to build websites
+                        and software, automate
+                        tasks, and conduct data analysis. Python is a general purpose language, meaning it can be used
+                        to
+                        create a variety of different programs and isn’t specialized for any specific problems. This
+                        versatility,
+                        along with its beginner-friendliness, has made it one of the most-used programming languages
+                        today.</p>
+                    <h3 class="mt-5">What is Flask? </h3>
+                    <p style="font-size: 22px;">Flask is a lightweight Python web framework that provides useful tools
+                        and features for creating
+                        web applications in the Python Language. It gives developers flexibility and is an accessible
+                        framework for new developers because you can build a web application quickly using only a single
+                        Python file. Flask is also extensible and doesn’t force a particular directory structure or
+                        require complicated boilerplate code before getting started.</p>
+                    <h3 class="mt-5">The layout of the Python Flask Framework </h3>
+                    <p>
+                    <ul style="font-size: 22px;">
+                        <li>Module Init - required to enable or create the application.</li>
+                        <li>Module URL - to store URL of each module</li>
+                        <li>Module Routes and View - To add and display different pages of application depending on the
+                            requested URL
+                        </li>
+                        <li>Module Templates - To store different static webpages of application.</li>
+                    </ul>
+                    </p>
+                    <h3 class="mt-5">Effective Python Testing With Pytest</h3>
+                    <p>
+                    <ul style="font-size: 22px;">
+                        <li>Pytest is a testing framework based on python. It is mainly used to write API test cases.
+                        <li>Pytest can run multiple tests in parallel, which reduces the execution time.</li>
+                        <li>Pytest has its own way to detect the test file and test functions automatically, if not
+                            mentioned explicitly.
+                        </li>
+                    </ul>
+                    </p>
+                </div>
+                <div class="col">
+                    <h3 class="mt-5">Python Syntax Comparison </h3>
+                    <img src="{{ url_for('static', filename='/images/example_python.jpeg') }}"
+                         class="d-block" style="height: 380px; width: 575px;"/>
+                    <h3 class="mt-5">Area in which Python is used</h3>
+                    <ul style="font-size: 22px;">
+                        <li>Data analysis</li>
+                        <li>machine learning</li>
+                        <li>Web development</li>
+                        <li>Automation or scripting</li>
+                        <li>Software testing</li>
+                    </ul>
+                </div>
+            </div>
+
+    {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}

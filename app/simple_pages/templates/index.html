@@ -1,25 +1,159 @@
 {% extends "base.html" %}
 {% block content %}
-    <div class="row">
-        <article class="col-8 lh-lg fs-5">
+    <h3>Index Page</h3>
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <!-- Inner -->
+        <div class="carousel-inner" style="height: 850px;">
+            <!-- Single item -->
+            <div class="carousel-item" style="padding-top: 40px;">
+                <a href="/html1"><img src="{{ url_for('static', filename='/images/cicd.png') }}"
+                                      class="d-block w-100"/></a>
+            </div>
 
-            <h1>Index Page</h1>
-            {{ lipsum (n=5, html=True, min=20, max=100) }}
-        </article>
-        {% if current_user.is_authenticated == false %}
-            <aside class="col-4">
-                <h2>Login</h2>
-                <form action="{{ url_for('auth.login') }}" method=post>
-                    <dl>
-                        {{ form.csrf_token }}
-                        {{ render_field(form.email) }}
-                        {{ render_field(form.password) }}
-                    </dl>
-                    <p><input type=submit value=Login>
-                </form>
-            </aside>
-        {% endif %}
+            <!-- Single item -->
+            <div class="carousel-item active">
+                <a href="/docker"> <img src="{{ url_for('static', filename='/images/docker.png') }}"
+                                        class="d-block w-100"/></a>
+            </div>
 
+            <!-- Single item -->
+            <div class="carousel-item">
+                <a href="/python"> <img src="{{ url_for('static', filename='/images/python.jpeg') }}"
+                                        class="d-block w-100"/></a>
+            </div>
+            <!-- Single item -->
+            <div class="carousel-item">
+                <a href="/git"> <img src="{{ url_for('static', filename='/images/github.png') }}"
+                                     class="d-block w-100"/></a>
+            </div>
+            <!-- Single item -->
+            <div class="carousel-item">
+                <a href="/oop"> <img src="{{ url_for('static', filename='/images/op2.png') }}"
+                                     class="d-block w-100" style="height: 750px;"/></a>
+            </div>
+            <!-- Single item -->
+            <div class="carousel-item">
+                <a href="/pylint"> <img src="{{ url_for('static', filename='/images/pylint.png') }}"
+                                        class="d-block w-100" style="height: 750px;"/></a>
+            </div>
+            <!-- Single item -->
+            <div class="carousel-item">
+                <a href="/solid"> <img src="{{ url_for('static', filename='/images/sld.jpg') }}"
+                                       class="d-block w-100" style="height: 750px;"/></a>
+            </div>
+            <!-- Single item -->
+            <div class="carousel-item">
+                <a href="/aaa"> <img src="{{ url_for('static', filename='/images/amain.png') }}"
+                                                            class="d-block w-100" style="height: 750px;"/></a>
+            </div>
+        </div>
+        <!-- indicatore -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleSlidesOnly"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">Docker</h4>
+                        <p class="card-text" style="font-size:20px;">Docker is an open platform for developing,
+                            shipping,
+                            and running applications. Docker enables you to separate your applications from your
+                            infrastructure so you can deliver software quickly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">Python</h4>
+                        <p class="card-text" style="font-size:20px;">Python is an interpreted, object-oriented,
+                            high-level
+                            programming language with dynamic semantics.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">CI/CD</h4>
+                        <p class="card-text" style="font-size:20px; border: none;">CI/CD is a method to frequently
+                            deliver
+                            apps to customers by introducing automation into the stages of app development. The main
+                            concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous
+                            deployment. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">GitHub</h4>
+                        <p class="card-text" style="font-size:20px;">GitHub is a website and cloud-based service that
+                            helps
+                            developers store and manage their code, as well as track and control changes to their
+                            code.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">OOPs</h4>
+                        <p class="card-text" style="font-size:20px;">Object-Oriented Programming(OOP), is all about
+                            creating “objects”. An object is a group of interrelated variables and functions. These
+                            variables are often referred to as properties of the object and functions are referred to as
+                            the behavior of the objects. These objects provide a better and clear structure for the
+                            program. </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">AAA</h4>
+                        <p class="card-text" style="font-size:20px;">The AAA (Arrange-Act-Assert) pattern has become
+                            almost a standard across the industry. It suggests that you should divide your test method
+                            into three sections: arrange, act and assert. Each one of them only responsible for the part
+                            in which they are named after.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">SOLID</h4>
+                        <p class="card-text" style="font-size:20px; border: none;">SOLID principles are a set of 5
+                            principles that facilitate code testing, maintenance and readability. The benefits of a team
+                            adopting these principles in their code development include more agile software deployment,
+                            increased code reusability and scalability, and improved debugging.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card" style="width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">Pylint</h4>
+                        <p class="card-text" style="font-size:20px;">Pylint is a tool that checks for errors in Python
+                            code, tries to enforce a coding standard and looks for code smells. It can also look for
+                            certain type errors, it can recommend suggestions about how particular blocks can be
+                            refactored and can offer you details about the code's complexity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
-</article>

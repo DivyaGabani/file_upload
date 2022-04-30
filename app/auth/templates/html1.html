@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+
+        <!-- Begin page content -->
+            <div class="row">
+                <h4>Let's take a closer look to CI/CD</h4>
+                <div class="col-6">
+                    <h3 class="mt-5">What is CI/CD? </h3>
+                    <p style="font-size: 22px;">CI and CD stand for continuous integration and continuous
+                        delivery/continuous deployment. In very simple terms, CI is a modern software development
+                        practice in which incremental code changes are made frequently and reliably. Automated
+                        build-and-test steps triggered by CI ensure that code changes being merged into the repository
+                        are reliable. The code is then delivered quickly and seamlessly as a part of the CD process. In
+                        the software world, the CI/CD pipeline refers to the automation that enables incremental code
+                        changes from developers’ desktops to be delivered quickly and reliably to production.</p>
+                    <h3 class="mt-5">Why CI/CD important? </h3>
+                    <p style="font-size: 22px;">CI/CD allows organizations to ship software quickly and efficiently.
+                        CI/CD facilitates an effective process for getting products to market faster than ever before,
+                        continuously delivering code into production, and ensuring an ongoing flow of new features and
+                        bug fixes via the most efficient delivery method.</p>
+                    <h3 class="mt-5">CI - Continuous Integration</h3>
+                    <p style="font-size: 22px;">Continuous Integration (CI) is practice that involves developers making
+                        small changes and checks to their code. Due to the scale of requirements and the number of steps
+                        involved, this process is automated to ensure that teams can build, test, and package their
+                        applications in a reliable and repeatable way. CI helps streamline code changes, thereby
+                        increasing time for developers to make changes and contribute to improved software.</p>
+                    <h3 class="mt-5">CD - Continuous Delivery</h3>
+                    <p style="font-size: 22px;">Continuous Delivery (CD) is the automated delivery of completed code to
+                        environments like testing and development. CD provides an automated and consistent way for code
+                        to be delivered to these environments.</p>
+                    <h3 class="mt-5">Continuous Deployment</h3>
+                    <p style="font-size: 22px;">Continuous Deployment is the next step of continuous delivery. Every
+                        change that passes the automated tests is automatically placed in production, resulting in many
+                        production deployments.
+                        Continuous deployment should be the goal of most companies that are not constrained by
+                        regulatory or other requirements</p>
+                </div>
+                <div class="col">
+                    <h3 class="mt-5">CI/CD </h3>
+                    <img src="{{ url_for('static', filename='/images/ci.png') }}"
+                         class="d-block" style="height: 470px; width: 575px;"/>
+
+                    <h3 class="mt-5">CI/CD Pipeline </h3>
+                    <img src="{{ url_for('static', filename='/images/CICD-pipeline.png') }}"
+                         class="d-block" style="height: 410px; width: 575px;"/>
+                </div>
+            </div>
+
+
+
+    {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}

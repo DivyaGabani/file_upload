@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block content %}
+    {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
+    <h3>AAA Page</h3>
+    <div class="row">
+        <!-- Begin page content -->
+        <div class="container-fluid">
+            <h3 class="mt-5" style="text-align: center">Unit Testing and the Arrange, Act and Assert (AAA) Pattern</h3>
+            <p style="font-size: 20px; text-align: center;">The AAA (Arrange-Act-Assert) pattern has become almost a
+                standard across the industry. It suggests that you should divide your test method into three sections:
+                arrange, act and assert. Each one of them only responsible for the part in which they are named
+                after.A test is a procedure that exercises a behavior to determine if the behavior functions correctly.
+                There are several different kinds of tests, like unit tests, integration tests, or end-to-end tests, but
+                all functional tests do the same basic thing: they try something and report PASS or FAIL.</p>
+            <p>
+                <img src="{{ url_for('static', filename='/images/aaa.jpg') }}"
+                     class="d-block" style="height: 380px; width: 575px; margin-left: auto;
+  margin-right: auto;"/></p>
+            <div class="row">
+                <div class="col-7">
+                    <h3 class="mt-5">1.Arrange</h3>
+                    <p style="font-size: 20px;">Arrange inputs and targets. Arrange steps should set up the test case.
+                        Does the test require any objects or special settings? Does it need to prep a database? Does it
+                        need to log into a web app? Handle all of these operations at the start of the test.</p>
+                    <p style="font-size: 20px;">So the arrange section you only have code required to setup that
+                        specific test. Here objects would be created, mocks setup (if you are using one) and potentially
+                        expectations would be set. Then there is the Act, which should be the invocation of the method
+                        being tested. And on Assert you would simply check whether the expectations were met.</p>
+                    <h3 class="mt-5">2.Act</h3>
+                    <p style="font-size: 20px;">Act on the target behavior. Act steps should cover the main thing to be
+                        tested. This could be calling a function or method, calling a REST API, or interacting with a
+                        web page. Keep actions focused on the target behavior.</p>
+                    <h3 class="mt-5">3.Assert</h3>
+                    <p style="font-size: 20px;">Assert expected outcomes. Act steps should elicit some sort of response.
+                        Assert steps verify the goodness or badness of that response. Sometimes, assertions are as
+                        simple as checking numeric or string values. Other times, they may require checking multiple
+                        facets of a system. Assertions will ultimately determine if the test passes or fails.</p>
+                    <h3 class="mt-5">4.Unit Testing</h3>
+                    <p style="font-size: 20px;">Unit tests are an essential part of software development that
+                        independently test​ a part of the app. Unit testing works in three steps, also known as AAA
+                        .</p>
+                    <p style="font-size: 20px;">A unit test can check multiple behaviors of a system, but usually, they
+                        fall under two categories: state-based and interaction-based. State-based unit testing verifies
+                        that the system produces correct results; whereas, interaction-based unit testing makes sure
+                        that the system calls the correct methods.</p>
+
+                </div>
+                <div class="col">
+
+                    <h3 class="mt-5">Phases of AAA</h3>
+                    <img src="{{ url_for('static', filename='/images/phaseaaa.JPG') }}"
+                         class="d-block" style="height: 250px; width: 450px;"/>
+
+                    <h3 class="mt-5">Sum </h3>
+                    <img src="{{ url_for('static', filename='/images/sumaaa.png') }}"
+                         class="d-block" style="height: 250px;width: 450px;"/>
+
+                    <h3 class="mt-5">Example </h3>
+                    <img src="{{ url_for('static', filename='/images/aaa_ex.jpg') }}"
+                         class="d-block" style="height: 250px;width: 450px;"/>
+
+                </div>
+            </div>
+        </div>
+
+    {% if current_user.is_authenticated == false %}
+        <aside class="col-4">
+            <h2>Login</h2>
+            <form action="{{ url_for('auth.login') }}" method=post>
+                <dl>
+                    {{ form.csrf_token }}
+                    {{ render_field(form.email) }}
+                    {{ render_field(form.password) }}
+                </dl>
+                <p><input type=submit value=Login>
+            </form>
+        </aside>
+    {% endif %}
+{% endblock %}
+

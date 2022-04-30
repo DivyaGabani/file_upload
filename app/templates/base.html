@@ -25,25 +25,41 @@
             {% from 'bootstrap5/utils.html' import render_messages %}
             {% from 'bootstrap5/form.html' import render_form, render_field, render_form_row %}
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border: none;">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
                         aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown"  style="background-color: gold;">
                     <div class="navbar-nav mr-auto">
                         {% if current_user.is_authenticated %}
                             {{ render_nav_item('auth.dashboard','Dashboard' ) }}
                         {% else %}
                             {{ render_nav_item('simple_pages.index', 'Home') }}
                         {% endif %}
-                        {{ render_nav_item('map.map_locations','Map' ) }}
-                        {{ render_nav_item('simple_pages.about','About') }}
-                        {{ render_nav_item('simple_pages.welcome','Welcome') }}
                     </div>
                 </div>
-                <div class="navbar-nav d-flex">
+                <div class="navbar-nav d-flex"  style="background-color:gold;">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Articles
+                            </a>
+                            <ul class="dropdown-menu " aria-labelledby="navbarDarkDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{ url_for("auth.docker") }}">Docker</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for("auth.python") }}">Python</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for("auth.html1") }}">CI/CD</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for("auth.git") }}">Github</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for("auth.aaa") }}">AAA</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for("auth.pylint") }}">PYLINT</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for("auth.solid") }}">SOLID</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for("auth.oop") }}">OOP Concepts</a></li>
+                            </ul>
+                        </li>
+                </div>
+            <div class="navbar-nav d-flex"  style="background-color: gold;">
+                    {{ render_nav_item('simple_pages.about','About') }}
                     {% if current_user.is_authenticated %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button"
@@ -57,9 +73,7 @@
                                     Account</a></li>
                                 {% if current_user.is_admin %}
                                     <li><a class="dropdown-item" href="{{ url_for("auth.browse_users") }}">User Mgmt</a></li>
-                                    <li><a class="dropdown-item" href="{{ url_for("map.browse_locations") }}">Loc Mgmt</a></li>
                                     <li><a class="dropdown-item" href="{{ url_for("songs.songs_browse") }}">Song Mgmt</a></li>
-                                    <li><a class="dropdown-item" href="{{ url_for("map.browse_locations_datatables") }}">Loc Mgmt(dt)</a></li>
 
 
                                 {% endif %}
@@ -78,10 +92,15 @@
     <div class="row">
         {{ render_messages() }}
     </div>
-    <div class="row mt-5">
-
+    <div class="row mt-5" style="margin-top: 0px;">
         {% block content %}
         {% endblock %}
+    <footer class="bg-light text-center">
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: gold; font-size: 20px;">
+        © 2022 Copyright:DIVYA GABANI
+    </div>
+</footer>
     </div>
 </div>
 
@@ -93,8 +112,6 @@
     {{ bootstrap.load_js() }}
 
 {% endblock %}
-<footer class="text-center mt-5">
-    Environment: {{ deployment_environment }} - Copyright: {{ year }} {{ format_price(100) }}
-</footer>
+
 </body>
 </html>

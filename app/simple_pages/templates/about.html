@@ -1,6 +1,19 @@
 {% extends "base.html" %}
 <article>{% block content %}
     <h1>About</h1>
-    {{ lipsum (n=5, html=True, min=20, max=100) }}
+    <div class="row">
+        <h3>Introduction of Myself</h3>
+        <p style="font-size:20px;">Hello Everyone!
+            I am Divya Gabani. I am pursuing Master's in Computer Science. This is my third semester. I have
+            completed my Bachelor's in Computer Applications from India. I have worked with Javascript, Python, SQL,
+            HTML.
+        </p>
+        <p style="font-size:20px;">I have created this website as a part of project for IS601-Web System
+            Development using pycharm as IDE,Docker and HEROKU for deploy and manage my flask application.
+            Each technology such as Python,Pylint,AAA Testing,SOLID principles,OOP Concepts,GitHub Workflow,Docker.
+            You will find detailed information about each technology under "Article" tab, or you
+            can click on carousel images to go on particular webpage.
+        </p>
+    </div>
 {% endblock %}
 </article>
