@@ -1,6 +1,6 @@
-"""csv file test"""
+"""This test csv file test"""
 import csv
-from app.db.models import User, Song
+from app.db.models import User
 
 
 def test_csv_file_transaction(client, add_user, application):
