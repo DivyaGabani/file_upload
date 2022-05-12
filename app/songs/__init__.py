@@ -49,6 +49,6 @@ def songs_upload():
         return redirect(url_for('songs.songs_browse'))
 
     try:
-        return render_template('uploadt.html', form=form)
+        return render_template('upload.html', form=form)
     except TemplateNotFound:
         abort(404)
