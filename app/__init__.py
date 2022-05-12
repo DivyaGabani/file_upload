@@ -19,6 +19,7 @@ from app.logging_config import log_con, LOGGING_CONFIG
 from app.simple_pages import simple_pages
 from app.songs import songs
 from app.map import map
+from app.transactions import transactions
 from app.db import database
 from flask_cors import CORS
 login_manager = flask_login.LoginManager()
@@ -50,6 +51,7 @@ def create_app():
     app.register_blueprint(log_con)
     app.register_blueprint(error_handlers)
     app.register_blueprint(songs)
+    app.register_blueprint(transactions)
     app.register_blueprint(map)
     app.context_processor(utility_text_processors)
     # add command function to cli commands

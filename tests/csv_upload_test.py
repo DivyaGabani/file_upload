@@ -3,7 +3,7 @@ import csv
 from app.db.models import User, Song
 
 
-def test_csv_dile(client, add_user, application):
+def test_csv_file(client, add_user, application):
     """This test csv file is created or not """
     with application.app_context():
         user = User('dummy1@test.com', 'abcd1234')
