@@ -1,11 +1,11 @@
 # Project Setup
 
-[![Production Workflow](https://github.com/DivyaGabani/file_upload/actions/workflows/prod.yml/badge.svg)](https://github.com/DivyaGabani/file_upload/actions/workflows/prod.yml)
+[![Production Workflow](https://github.com/DivyaGabani/flask-transaction_management/actions/workflows/prod.yml/badge.svg)](https://github.com/DivyaGabani/flask-transaction_management/actions/workflows/prod.yml)
 
-* [Production Deployment](https://dockerflask-p1-prod.herokuapp.com/)
+* [Production Deployment](https://transaction-prod.herokuapp.com/)
 
 
-[![Development Workflow](https://github.com/DivyaGabani/file_upload/actions/workflows/dev.yml/badge.svg)](https://github.com/DivyaGabani/file_upload/actions/workflows/dev.yml)
+[![Development Workflow](https://github.com/DivyaGabani/flask-transaction_management/actions/workflows/dev.yml/badge.svg)](https://github.com/DivyaGabani/flask-transaction_management/actions/workflows/dev.yml)
 
-* [Developmental Deployment](https://dockerflask-p1-dev.herokuapp.com/)
+* [Developmental Deployment](https://transaction-dev.herokuapp.com/)
 

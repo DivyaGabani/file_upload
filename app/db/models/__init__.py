@@ -9,7 +9,7 @@ from sqlalchemy_serializer import SerializerMixin
 
 class Transaction(db.Model, SerializerMixin):
     __tablename__ = 'transactions'
-    serialize_only = ('Amount', 'Type')
+    serialize_only = ('amount', 'type')
     id = db.Column(db.Integer, primary_key=True)
     amount = db.Column(db.String(300), nullable=True, unique=False)
     type = db.Column(db.String(300), nullable=True, unique=False)
@@ -25,7 +25,6 @@ class Transaction(db.Model, SerializerMixin):
             'amount': self.amount,
             'type': self.type,
         }
-
 
 
 class Song(db.Model, SerializerMixin):
@@ -83,7 +82,9 @@ class User(UserMixin, db.Model):
     is_admin = db.Column('is_admin', db.Boolean(), nullable=False, server_default='0')
     songs = db.relationship("Song", back_populates="user", cascade="all, delete")
     locations = db.relationship("Location", back_populates="user", cascade="all, delete")
-
+    transactions = db.relationship("Transaction", back_populates="user", cascade="all, delete")
+    bal = db.Column(db.Integer, nullable=True)
+    start_balance = 0
     # `roles` and `groups` are reserved words that *must* be defined
     # on the `User` model to use group- or role-based authorization.
 
@@ -104,6 +105,12 @@ class User(UserMixin, db.Model):
     def get_id(self):
         return self.id
 
+    def set_start_balance(self, start_balance):
+        self.start_balance = start_balance
+
+    def set_bal(self, bal):
+        self.bal = bal
+        
     def set_password(self, password):
         self.password = generate_password_hash(password)
 

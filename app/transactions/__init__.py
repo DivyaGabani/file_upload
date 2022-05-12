@@ -21,8 +21,13 @@ def transactions_browse(page):
     per_page = 1000
     pagination = Transaction.query.paginate(page, per_page, error_out=False)
     data = pagination.items
+    start_amt = 0
+    if current_user.bal is None:
+        start_amt = 0
+    else:
+        start_amt = current_user.bal
     try:
-        return render_template('browse_transaction.html',data=data,pagination=pagination)
+        return render_template('browse_transactions.html',data=data,pagination=pagination,start_amt=start_amt)
     except TemplateNotFound:
         abort(404)
 
@@ -37,18 +42,24 @@ def transactions_upload():
         filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], filename)
         form.file.data.save(filepath)
         #user = current_user
+        if current_user.bal is None:
+            amt = current_user.start_balance
+        else:
+            amt = current_user.bal
         list_of_transactions = []
-        with open(filepath) as file:
+        with open(filepath, encoding='utf-8-sig') as file:
             csv_file = csv.DictReader(file)
             for row in csv_file:
-                list_of_transactions.append(Transaction(row['Amount'],row['type']))
+                list_of_transactions.append(Transaction(row['AMOUNT'], row['TYPE']))
+                amt = amt + int(row['AMOUNT'])
 
         current_user.transactions = list_of_transactions
+        current_user.set_bal(amt)
+        current_user.start_balance = amt
         db.session.commit()
-
         return redirect(url_for('transactions.transactions_browse'))
 
     try:
-        return render_template('upload.html', form=form)
+        return render_template('uploadt.html', form=form)
     except TemplateNotFound:
         abort(404)
